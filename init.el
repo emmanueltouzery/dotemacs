@@ -15,6 +15,7 @@
                  evil-visualstar
                  ghc
                  git-gutter
+                 git-gutter-fringe
                  haskell-mode
                  modeline-posn
                  helm
@@ -32,7 +33,7 @@
   (when (and (not (package-installed-p pkg))
            (assoc pkg package-archive-contents))
   (package-install pkg)))
-  
+
 (defun package-list-unaccounted-packages ()
   "Like `package-list-packages', but shows only the packages that
   are installed and are not in `jpk-packages'.  Useful for
@@ -81,6 +82,8 @@
 ;(setq visible-bell t)
 (setq ring-bell-function #'ignore)
 
+(when (window-system)
+  (require 'git-gutter-fringe))
 (global-git-gutter-mode +1)
 
 ; no line-wrapping by default
@@ -129,7 +132,7 @@
 (savehist-mode 1)
 
 ; http://stackoverflow.com/a/12334932/516188
-(add-to-list 'default-frame-alist '(width . 120)) 
+(add-to-list 'default-frame-alist '(width . 120))
 
 (evil-leader/set-leader ",")
 (evil-leader/set-key
@@ -194,6 +197,10 @@
 
 ;(add-to-list 'company-backends 'company-ghc)
 ;(custom-set-variables '(company-ghc-show-info t))
+
+(setq-default show-trailing-whitespace 't)
+(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ; SHORTCUTS TO REMEMBER:
 ; M-/ => quick completion
