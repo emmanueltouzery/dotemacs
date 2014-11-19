@@ -86,8 +86,11 @@
   (require 'git-gutter-fringe))
 (global-git-gutter-mode +1)
 
-;; no line-wrapping by default
-(setq-default truncate-lines 1)
+;; http://stackoverflow.com/a/10235505/516188
+(add-hook 'text-mode-hook '(lambda ()
+                             (setq truncate-lines nil word-wrap t)))
+(add-hook 'prog-mode-hook '(lambda ()
+                             (setq truncate-lines t word-wrap nil)))
 
 ;; see this evil bug
 ;; https://bitbucket.org/lyro/evil/issue/42/c-o-across-buffers-after-c-broken
@@ -210,13 +213,6 @@
   (whitespace-cleanup))
 
 (global-set-key "\C-cn" 'my/clean-buffer-formatting)
-
-;; http://zeekat.nl/articles/making-emacs-work-for-me.html
-(defun my/text-formatting-hooks ()
-  (my/turn-on 'auto-fill)) ; turn on automatic hard line wraps
-
-(add-hook 'text-mode-hook
-          'my/text-formatting-hooks)
 
 (setq-default indicate-empty-lines +1)
 (setq-default indicate-buffer-boundaries 'left)
