@@ -1,0 +1,7 @@
+session.*
+history
+auto-save-list/
+projectile-bookmarks.eld
+projectile.cache
+*.elc
+elpa/
