@@ -69,7 +69,7 @@
 
 (load-theme 'sanityinc-tomorrow-night t)
 
-(set-default-font "Droid Sans Mono 10")
+(set-default-font "Droid Sans Mono 11")
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
@@ -216,6 +216,8 @@
 
 (setq-default indicate-empty-lines +1)
 (setq-default indicate-buffer-boundaries 'left)
+
+(set-frame-parameter (selected-frame) 'alpha 97)
 
 ;; SHORTCUTS TO REMEMBER:
 ;; M-/ => quick completion
